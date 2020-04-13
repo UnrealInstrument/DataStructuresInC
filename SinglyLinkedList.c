@@ -9,7 +9,7 @@ struct List_RNode {
 
 typedef struct {
     List_RNode* Head;
-    unsigned int Size;
+    unsigned long Size;
 } RList;
 
 RList* List_Create() {
@@ -36,6 +36,7 @@ void List_Insert(RList* List, int Data) {
 void List_Remove(RList* List) {
     List_RNode* TempNode = List->Head;
     List->Head = List->Head->Next;
+    --List->Size;
     free(TempNode);
 }
 
@@ -46,7 +47,7 @@ void List_Traverse(RList* List) {
         printf("%d ", TempNode->Data);
         TempNode = TempNode->Next;
     }
-    printf("]\n");
+    printf("] Size: %lu\n", List->Size);
 }
 
 void List_Destroy(RList* List) {
