@@ -19,18 +19,18 @@ RList* List_Create() {
     return NewList;
 }
 
-List_RNode* List_CreateNode(RList* List, int Data) {
+List_RNode* List_CreateNode(int Data) {
     List_RNode* NewNode = malloc(sizeof(List_RNode));
     NewNode->Data = Data;
     NewNode->Next = NULL;
-    ++List->Size;
     return NewNode;
 }
 
 void List_Insert(RList* List, int Data) {
-    List_RNode* NewNode = List_CreateNode(List, Data);
+    List_RNode* NewNode = List_CreateNode(Data);
     NewNode->Next = List->Head;
     List->Head = NewNode;
+    ++List->Size;
 }
 
 void List_Remove(RList* List) {
